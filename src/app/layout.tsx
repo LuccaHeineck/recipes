@@ -1,8 +1,11 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "@/components/theme-toggle";
+import AddRecipeModal from '../components/AddRecipeModal';
+import Link from 'next/link';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,16 +28,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system">
-        <nav className="flex justify-between gap-4">
-          <h1>My recipes</h1>
-          <ThemeToggle />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <nav className="flex justify-between items-center">
+          <Link href="/">
+            <h1
+            className="cursor-pointer sm:text-2xl font-bold"
+            style={{ fontSize: "2.5rem", marginLeft: "12px" }} // mobile style
+          >
+            My recipes
+          </h1>
+          </Link>
+          <div className="flex gap-4 mr-4">
+            <AddRecipeModal />
+            <ThemeToggle />
+          </div>
         </nav>
-        {children}
+          {children}
         </ThemeProvider>
       </body>
     </html>
