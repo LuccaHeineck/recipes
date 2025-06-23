@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import RecipeDetails from "@/components/RecipeDetails";
 
 interface Recipe {
