@@ -1,6 +1,7 @@
 import RecipeDetails from "@/components/RecipeDetails";
 
 interface Recipe {
+	id: number;
 	title: string;
 	image: string;
 	description: string;
@@ -9,10 +10,17 @@ interface Recipe {
 	vegan: boolean;
 }
 
-export default async function RecipePage({ params }: { params: { id: string } }) {
+interface PageProps {
+	params: {
+		id: string;
+	};
+}
+
+export default async function RecipePage({ params }: PageProps) {
 	const res = await fetch(`http://localhost:4000/recipes/${params.id}`, {
-		cache: "no-store", // optional: avoids stale data
+		cache: "no-store",
 	});
+
 	if (!res.ok) {
 		throw new Error("Failed to fetch recipe.");
 	}
