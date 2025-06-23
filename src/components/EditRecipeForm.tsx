@@ -21,7 +21,7 @@ interface EditRecipeFormProps {
 }
 
 export default function EditRecipeForm({ recipe }: EditRecipeFormProps) {
-  const [id, setId] = useState(recipe.id);
+  const [id] = useState<string>('');
   const [title, setTitle] = useState(recipe.title);
   const [image, setImage] = useState(recipe.image);
   const [description, setDescription] = useState(recipe.description);
